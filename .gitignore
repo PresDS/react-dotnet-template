@@ -1,0 +1,35 @@
+# Root .gitignore for both React (Vite or CRA) and ASP.NET
+
+# Node (React)
+client/node_modules/
+client/.env
+client/dist/
+client/.vite/
+client/build/
+
+# Vite
+*.log
+
+# ASP.NET Core
+server/bin/
+server/obj/
+server/*.user
+server/*.suo
+server/.vs/
+server/.vscode/
+server/*.db
+server/wwwroot/
+
+# .NET user secrets and environment-specific configs
+server/appsettings.Development.json
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+*.bak
+.idea/
+.vscode/
+
