@@ -5,7 +5,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Add Cors Policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowClient", policy =>
+    {
+        policy.WithOrigins("http://localhost:5175") // Add your frontend URL
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
+
+// Use Cors Policy
+app.UseCors("AllowClient");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
