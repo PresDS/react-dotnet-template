@@ -1,8 +1,9 @@
 function App() {
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   async function handlePing() {
     try {
-      const response = await fetch('http://localhost:5016/test');
+      const response = await fetch(`${apiUrl}/test`);
       if(!response.ok) {
         throw Error('Something went wrong', response)
       }
@@ -22,7 +23,7 @@ function App() {
         name: "Preston"
       };
 
-      const response = await fetch('http://localhost:5016/test', {
+      const response = await fetch(`${apiUrl}/test`, {
         method: "POST",
         body: JSON.stringify(requestBody),
         headers: {
