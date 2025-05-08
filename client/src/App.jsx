@@ -1,14 +1,42 @@
 function App() {
 
-  async function handleClick() {
+  async function handlePing() {
     try {
-      const response = await fetch('http://localhost:5016/weatherforecast');
+      const response = await fetch('http://localhost:5016/test');
       if(!response.ok) {
-        throw Error('Bad Request :(')
+        throw Error('Something went wrong', response)
       }
       const responseData = await response.json();
       console.log('responseData', responseData);
-      
+
+    } catch (error) {
+      console.error(error)
+    }
+
+  }
+
+  async function handleGreeting() {
+    try {
+
+      const requestBody = { 
+        name: "Preston"
+      };
+
+      const response = await fetch('http://localhost:5016/test', {
+        method: "POST",
+        body: JSON.stringify(requestBody),
+        headers: {
+          "Content-type": "application/json"
+        }
+        
+      });
+
+      if(!response.ok) {
+        throw Error('Something went wrong', response)
+      }
+      const responseData = await response.json();
+      console.log('responseData', responseData);
+
     } catch (error) {
       console.error(error)
     }
@@ -18,7 +46,8 @@ function App() {
   return (
     <>
       <h1>React with ASP.NET</h1>
-      <button onClick={handleClick}>Ping</button>
+      <button onClick={handlePing}>Ping</button>
+      <button onClick={handleGreeting}>Greeting</button>
     </>
   )
 }
